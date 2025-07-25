@@ -20,7 +20,13 @@ go run main.go
 
 You’ll see something like:  
 ```
-🐱Cat Fact of the Day: A group of cats is called a clowder.
+============= API Response =============
+Status: 200 OK
+Status Code: 200
+Headers: application/json
+----------------------------------------
+Body:
+{"fact":"In the 1750s, Europeans introduced cats into the Americas to control pests.","length":75}
 ```  
 
 Why?  
