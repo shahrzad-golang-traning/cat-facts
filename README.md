@@ -1,24 +1,39 @@
-# cat-facts
 
+## 🐱 Cat Facts CLI - Go HTTP Client
 
-# 🐱 Cat Fact of the Day - Go Edition  
-Ever wondered how quirky cats really are? This simple Go app brings you a new random cat fact every time you run it – straight from the internet! No fluff, just facts.  
-This command-line app fetches a random cat fact from the public [catfact.ninja](https://catfact.ninja) API and prints it right to your terminal. Whether you're a cat lover, Go newbie, or just bored – this one's for you.  
-Built with Go (Golang), using `net/http` for making HTTP requests and `encoding/json` for decoding API responses.  
-To run it, you’ll need Go 1.16 or higher installed on your machine.  
+A simple and clean Go program that fetches a random **cat fact** from a public API and prints the response details like status, headers, and JSON body. Perfect as a beginner-friendly example of working with HTTP requests in Go.
 
-Clone the repository:  
-```bash  
-git clone https://github.com/yourusername/cat-fact-go.git  
-cd cat-fact-go  
-```  
+---
 
-Then simply run:  
-```bash  
-go run main.go  
-```  
+### 🚀 What It Does
 
-You’ll see something like:  
+* Sends a `GET` request to the `https://catfact.ninja/fact` API
+* Sets custom headers (`Accept` and `User-Agent`)
+* Prints the HTTP status, status code, content type, and response body
+* Handles all network and read errors gracefully
+* Uses `defer` to properly close the response body
+
+---
+
+### 🧠 What You’ll Learn
+
+* How to make HTTP requests in Go using `net/http`
+* How to read and handle response data
+* How to work with headers
+* Good practices like error checking and resource cleanup
+
+---
+
+### 📦 How to Run
+
+Make sure you have **Go** installed. Then:
+
+```bash
+go run main.go
+```
+
+You’ll see output like this:
+
 ```
 ============= API Response =============
 Status: 200 OK
@@ -26,17 +41,52 @@ Status Code: 200
 Headers: application/json
 ----------------------------------------
 Body:
-{"fact":"In the 1750s, Europeans introduced cats into the Americas to control pests.","length":75}
-```  
+{"fact":"Cats sleep 70% of their lives.","length":35}
+========================================
+```
 
-Why?  
-Because cats rule the internet. And Go makes things fast and fun.  
+---
 
-API Reference: [catfact.ninja](https://catfact.ninja)  
+### 🔧 Code Overview
 
-Future Ideas:  
-- Save facts to a local file  
-- Set up a daily notification using Task Scheduler or cron  
-- Send facts via SMS/email using Twilio or Mailgun  
+```go
+req, err := http.NewRequest("GET", url, nil)
+req.Header.Add("Accept", "application/json")
+req.Header.Add("User-Agent", "GoLang-Client/1.0")
+```
 
-License: MIT – do whatever you want, just don’t forget to feed your cat.
+> This tells the server: "Hey, I want JSON, and I'm a Go client."
+
+Then we handle the response:
+
+```go
+body, err := io.ReadAll(res.Body)
+fmt.Println(string(body))
+```
+
+---
+
+### 📚 API Reference
+
+This project uses [catfact.ninja](https://catfact.ninja/fact), a free and fun API that provides random cat facts in JSON format.
+
+---
+
+### 💡 Want More?
+
+This project is a great base to add more features:
+
+* Print the fact in a pretty format
+* Save it to a file
+* Convert JSON to Go struct using `encoding/json`
+* Add CLI arguments or flags
+
+---
+
+### 🐾 Author
+
+Made with love (and curiosity for cats) by **Shahrzad Taherzadeh**
+🧠 Want to learn more about HTTP clients or Go projects? Let’s connect!
+
+---
+
